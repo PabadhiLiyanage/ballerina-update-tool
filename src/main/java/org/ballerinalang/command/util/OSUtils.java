@@ -270,7 +270,7 @@ public class OSUtils {
         }
         return distributionType + "/" + ballerinaVersion + " (" + os + ") Updater/" + toolVersion;
     }
-
+//staring
     static boolean isWindows() {
         return OS.contains("win");
     }
