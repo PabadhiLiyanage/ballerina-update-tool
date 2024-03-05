@@ -22,7 +22,7 @@ plugins {
     id 'jacoco'
     id 'de.undercouch.download' version '4.1.1'
 }
-
+apply from: "$rootDir/executables/go.gradle"
 sourceCompatibility = 1.8
 
 group = project.group
@@ -53,7 +53,7 @@ jar {
 task copyBin(type: Copy) {
     from file("resources/bin")
     into file("build/resources/bin")
-    filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: ["version": version])
+    //filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: ["version": version])
 }
 
 task copyScripts(type: Copy) {
@@ -261,6 +261,15 @@ task copyScriptsForTests(type: Copy) {
     from file("$buildDir/../resources/scripts")
     into file("$buildDir/classes/scripts")
 }
+tasks.register('setVersion', Exec) {
+    doFirst {
+        environment 'VERSION', project.version
+    }
+    commandLine 'echo', "Version: ${project.version}"
+}
+tasks.named('go_build').configure {
+    dependsOn setVersion
+}
 
 test {
     useTestNG()
@@ -288,6 +297,7 @@ test {
 }
 
 build {
+    dependsOn go_build
     dependsOn createZip
     dependsOn createZipLinux
     dependsOn createZipMac

@@ -16,8 +16,8 @@ func main() {
 		os.Exit(1)
 	}
 	version := os.Getenv("VERSION")
-	//fmt.Print(scriptPath)
-	//scriptPath = "/usr/lib/ballerina/bin/bal"
+	fmt.Println("version :", version)
+	scriptPath = "/usr/lib/ballerina/bin/bal"
 	var javaCommand string
 	javaCommand = "java"
 	scriptDir := filepath.Dir(scriptPath)
@@ -152,7 +152,7 @@ func main() {
 		//Setting  Ballerina home and excectuion of bal file
 		ballerinaHome := filepath.Join(scriptDir, "..", "distributions", ballerinaVersion)
 		os.Setenv("BALLERINA_HOME", ballerinaHome)
-		balPath := filepath.Join(ballerinaHome, "bin", "ball")
+		balPath := filepath.Join(ballerinaHome, "bin", "bal")
 		ballerinaPath := filepath.Join(ballerinaHome, "bin", "ballerina")
 		if _, err := os.Stat(balPath); err == nil {
 			executeCommand(balPath, os.Args[1:])
