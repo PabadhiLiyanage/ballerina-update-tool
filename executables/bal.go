@@ -136,7 +136,6 @@ func main() {
 
 		// Check and read user-specific version file
 		userVersionFilePath := filepath.Join(os.Getenv("HOME"), ".ballerina", "ballerina-version")
-		//fmt.Println(userVersionFilePath)
 		userBallerinaVersion, err := readVersionFromFile(userVersionFilePath)
 		if err != nil {
 			//fmt.Println("Error reading user-specific version:", err)
@@ -148,7 +147,6 @@ func main() {
 
 		}
 		ballerinaVersion = strings.TrimSuffix(ballerinaVersion, "\n")
-		//fmt.Println("Selected Ballerina Version:", ballerinaVersion)
 		//Setting  Ballerina home and excectuion of bal file
 		ballerinaHome := filepath.Join(scriptDir, "..", "distributions", ballerinaVersion)
 		os.Setenv("BALLERINA_HOME", ballerinaHome)

@@ -25,6 +25,7 @@ plugins {
 apply from: "$rootDir/executables/go.gradle"
 sourceCompatibility = 1.8
 
+
 group = project.group
 version = project.version
 
